@@ -1,7 +1,7 @@
 const livro1 = {
     titulo: "Clean Code",
     autor: "Robert C. Martin",
-    preco: 89.9,
+    preco:89.9,
     estoque: 12
 };
 
