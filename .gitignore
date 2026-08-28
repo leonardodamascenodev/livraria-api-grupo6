@@ -1,0 +1,14 @@
+# Dependências do Node (obrigatório)
+node_modules/
+
+# Variáveis de ambiente e segredos
+.env
+.env.local
+
+# Logs de execução e erros
+*.log
+npm-debug.log*
+
+# Arquivos temporários do sistema operacional
+.DS_Store
+Thumbs.db
