@@ -28,7 +28,7 @@ Escola SENAI "Santo Paschoal Crepaldi" — Turma 1-2026-SESI_DEV_OC_1
 
 ## 📐 Diagrama UML Final
 
-![Diagrama UML](docs/diagramauml.png) <!-- Altere o caminho se sua imagem estiver em outro local -->
+![Diagrama UML](docs/esquemauml.png) <!-- Altere o caminho se sua imagem estiver em outro local -->
 
 **Especificações do Diagrama:**
 * Contém todas as classes do modelo com atributos, métodos, multiplicidades e os 4 tipos de relacionamentos (associação, agregação, composição e herança).
