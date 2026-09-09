@@ -84,6 +84,6 @@ livraria-api-grupo6/
 │   ├── services/
 │   │   ├── LivroService.js
 │   │   └── CategoriaService.js
-│   └── server.js (ou app.js)
+│   └── index.js
 ├── package.json
 └── README.md
