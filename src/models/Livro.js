@@ -2,7 +2,6 @@ class Livro {
     #preco;
     #estoque;
 
-
     constructor(titulo, autor, preco, estoque, categoria) {
         this.titulo = titulo;
         this.autor = autor;
@@ -15,17 +14,24 @@ class Livro {
         return this.#preco;
     }
 
+    set preco(valor) {
+        this.#preco = valor;
+    }
+
     get estoque() {
         return this.#estoque;
+    }
+
+    set estoque(valor) {
+        this.#estoque = valor;
     }
 
     descrever() {
         console.log("Titulo: " + this.titulo);
         console.log("Autor: " + this.autor);
         console.log("Preco: R$ " + this.#preco);
-        console.log("Categoria: " + this.categoria.nome)
+        console.log("Categoria: " + (this.categoria ? this.categoria.nome : 'Sem categoria'));
     }
-
 
     toJSON() {
         return {

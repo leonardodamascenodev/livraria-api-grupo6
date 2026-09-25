@@ -1,24 +1,63 @@
-// CONTROLLER (o "chef"): decide o que fazer com cada pedido.
-// Recebe da rota, chama o service certo, devolve a resposta.
-// Implementacao chega no Bloco 3.
-
 const livroService = require('../services/livroService');
 
 function listar(req, res) {
-  const livros = livroService.listarLivros();
-  res.json(livros);
+    res.status(200).json(livroService.listarLivros());
 }
 
 function buscarPorIndice(req, res) {
-    const indice = req.params.indice;
+    const indice = parseInt(req.params.indice);
     const livro = livroService.buscarLivroPorIndice(indice);
 
     if (!livro) {
-        res.status(404).json({ error: 'Livro não encontrado' });
-        return;
+        return res.status(404).json({ mensagem: "Livro não encontrado." });
     }
 
-    res.json(livro);
+    res.status(200).json(livro);
 }
 
-module.exports = { listar, buscarPorIndice };
+function criar(req, res) {
+    const novoLivro = livroService.criarLivro(req.body);
+    res.status(201).json(novoLivro);
+}
+
+function atualizarCompleto(req, res) {
+    const indice = parseInt(req.params.indice);
+    const livroAtualizado = livroService.atualizarLivroCompleto(indice, req.body);
+
+    if (!livroAtualizado) {
+        return res.status(404).json({ mensagem: "Livro não encontrado." });
+    }
+
+    res.status(200).json(livroAtualizado);
+}
+
+function atualizarParcial(req, res) {
+    const indice = parseInt(req.params.indice);
+    const livroAtualizado = livroService.atualizarLivroParcial(indice, req.body);
+
+    if (!livroAtualizado) {
+        return res.status(404).json({ mensagem: "Livro não encontrado." });
+    }
+
+    res.status(200).json(livroAtualizado);
+}
+
+function deletar(req, res) {
+    const indice = parseInt(req.params.indice);
+    const deletado = livroService.deletarLivro(indice);
+
+    if (!deletado) {
+        return res.status(404).json({ mensagem: "Livro não encontrado." });
+    }
+
+    res.status(204).send(); // Status 204 No Content para remoção bem-sucedida
+}
+
+module.exports = {
+    listar,
+    buscarPorIndice,
+    criar,
+    atualizarCompleto,
+    atualizarParcial,
+    deletar
+};
