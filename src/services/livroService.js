@@ -5,8 +5,21 @@ const livros = [
     new Livro("Boys of Tommen", "Chloe Walsh", 636.00, 20),
 ];
 
-function listarLivros() {
+function listarTodos() {
     return livros;
+}
+
+function listarLivros(filtros) {
+    let resultado = livros;
+    if (filtros.autor) {
+        resultado = resultado.filter((livro) =>
+            livro.autor.toLowerCase().includes(filtros.autor.toLowerCase())
+        );
+    }
+    if (filtros.precoMax) {
+        resultado = resultado.filter((livro) => livro.preco <= Number(filtros.precoMax));
+    }
+    return resultado;
 }
 
 function buscarLivroPorIndice(indice) {
@@ -54,6 +67,7 @@ function deletarLivro(indice) {
 }
 
 module.exports = {
+    listarTodos,
     listarLivros,
     buscarLivroPorIndice,
     criarLivro,
