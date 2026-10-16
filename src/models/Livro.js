@@ -35,13 +35,13 @@ class Livro {
 
     toJSON() {
         return {
+            id: this.id,
             titulo: this.titulo,
             autor: this.autor,
             preco: this.#preco,
             estoque: this.#estoque,
-            categoria: this.categoria
         };
     }
 }
 
-module.exports = Livro;
+module.exports = { Livro };

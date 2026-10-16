@@ -6,9 +6,9 @@ function listar(req, res) {
     res.status(200).json(livros);
 }
 
-function buscarPorIndice(req, res) {
-    const indice = parseInt(req.params.indice);
-    const livro = livroService.buscarLivroPorIndice(indice);
+function buscarPorId(req, res) {
+    const id = parseInt(req.params.id);
+    const livro = livroService.buscarLivroPorId(id);
 
     if (!livro) {
         return res.status(404).json({ mensagem: "Livro não encontrado." });
@@ -23,7 +23,7 @@ function criar(req, res) {
 }
 
 function atualizarCompleto(req, res) {
-    const indice = parseInt(req.params.indice);
+    const indice = parseInt(req.params.id);
     const livroAtualizado = livroService.atualizarLivroCompleto(indice, req.body);
 
     if (!livroAtualizado) {
@@ -34,7 +34,7 @@ function atualizarCompleto(req, res) {
 }
 
 function atualizarParcial(req, res) {
-    const indice = parseInt(req.params.indice);
+    const indice = parseInt(req.params.id);
     const livroAtualizado = livroService.atualizarLivroParcial(indice, req.body);
 
     if (!livroAtualizado) {
@@ -45,7 +45,7 @@ function atualizarParcial(req, res) {
 }
 
 function deletar(req, res) {
-    const indice = parseInt(req.params.indice);
+    const indice = parseInt(req.params.id);
     const deletado = livroService.deletarLivro(indice);
 
     if (!deletado) {
@@ -57,7 +57,7 @@ function deletar(req, res) {
 
 module.exports = {
     listar,
-    buscarPorIndice,
+    buscarPorId,
     criar,
     atualizarCompleto,
     atualizarParcial,

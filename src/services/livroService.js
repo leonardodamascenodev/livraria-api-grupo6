@@ -1,9 +1,10 @@
-const Livro = require('../models/Livro');
+const { Livro } = require("../models/Livro");
 
-const livros = [
-    new Livro("Estilhaça-me", "Tahereh Mafi", 220.00, 10),
-    new Livro("Boys of Tommen", "Chloe Walsh", 636.00, 20),
-];
+const livros = [];
+let proximoId = 1;
+
+criarLivro({ titulo: "Clean Code", autor: "Robert C. Martin", preco: 89.9, estoque: 12 });
+criarLivro({ titulo: "Eloquent JavaScript", autor: "Marijn Haverbeke", preco: 45.0, estoque: 20 });
 
 function listarTodos() {
     return livros;
@@ -11,9 +12,10 @@ function listarTodos() {
 
 function listarLivros(filtros) {
     let resultado = livros;
-    if (filtros.autor) {
+
+    if (filtros.titulo) {
         resultado = resultado.filter((livro) =>
-            livro.autor.toLowerCase().includes(filtros.autor.toLowerCase())
+            livro.titulo.toLowerCase().includes(filtros.titulo.toLowerCase())
         );
     }
     if (filtros.precoMax) {
@@ -22,12 +24,14 @@ function listarLivros(filtros) {
     return resultado;
 }
 
-function buscarLivroPorIndice(indice) {
-    return livros[indice];
+function buscarLivroPorId(id) {
+    return livros.find((livro) => livro.id === Number(id));
 }
 
 function criarLivro(dados) {
-    const novoLivro = new Livro(dados.titulo, dados.autor, dados.preco, dados.estoque, dados.categoria);
+    const novoLivro = new Livro(dados.titulo, dados.autor, dados.preco, dados.estoque);
+    novoLivro.id = proximoId;
+    proximoId++;
     livros.push(novoLivro);
     return novoLivro;
 }
@@ -35,7 +39,7 @@ function criarLivro(dados) {
 function atualizarLivroCompleto(indice, dados) {
     if (!livros[indice]) return null;
 
-    const livro = livros[indice];
+    const livro = buscarLivroPorId(id);
     livro.titulo = dados.titulo;
     livro.autor = dados.autor;
     livro.preco = dados.preco;     // Dispara o set preco
@@ -48,7 +52,7 @@ function atualizarLivroCompleto(indice, dados) {
 function atualizarLivroParcial(indice, dados) {
     if (!livros[indice]) return null;
 
-    const livro = livros[indice];
+    const livro = buscarLivroPorId(id);
 
     if (dados.titulo !== undefined) livro.titulo = dados.titulo;
     if (dados.autor !== undefined) livro.autor = dados.autor;
@@ -59,17 +63,18 @@ function atualizarLivroParcial(indice, dados) {
     return livro;
 }
 
-function deletarLivro(indice) {
-    if (!livros[indice]) return false;
+function deletarLivro(id) {
+    const posicao = livros.findIndex((livro) => livro.id === Number(id));
+    if (posicao === -1) return false;
 
-    livros.splice(indice, 1);
+    livros.splice(posicao, 1);
     return true;
 }
 
 module.exports = {
     listarTodos,
     listarLivros,
-    buscarLivroPorIndice,
+    buscarLivroPorId,
     criarLivro,
     atualizarLivroCompleto,
     atualizarLivroParcial,
