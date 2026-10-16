@@ -1,10 +1,19 @@
 class Categoria {
+    #id;
     #nome;
     #descricao;
 
     constructor(nome, descricao) {
         this.#nome = nome;
         this.#descricao = descricao;
+    }
+
+    get id() {
+        return this.#id;
+    }
+
+    set id(novoId) {
+        this.#id = Number(novoId);
     }
 
     get nome() {
@@ -24,17 +33,21 @@ class Categoria {
     }
 
     set descricao(novaDescricao) {
-        if(novaDescricao.length < 5) {
-            console.log("ERRO: o nome da descrição precisa de pelo menos 5 letras.")
-            return
-        }
-        this.#descricao = novaDescricao
+        this.#descricao = novaDescricao;
     }
-    
+
 
     descrever() {
         console.log("Categoria: " + this.#nome);
         console.log("Descrição: " + this.#descricao);
+    }
+
+    toJSON() {
+        return {
+            id: this.#id,
+            nome: this.#nome,
+            descricao: this.#descricao,
+        };
     }
 }
 

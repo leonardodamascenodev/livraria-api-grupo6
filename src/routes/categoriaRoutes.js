@@ -1,9 +1,13 @@
 const express = require('express');
+const categoriaController = require('../controllers/categoriaController');
+
 const router = express.Router();
 
-const livroController = require('../controllers/livroController');
-
-router.get('/', livroController.listarTodos);
-router.get('/:id', livroController.buscarPorId);
+router.get("/", categoriaController.listar);
+router.get("/:id", categoriaController.buscarPorId);
+router.post("/", categoriaController.criar);
+router.put("/:id", categoriaController.atualizarCompleto);
+router.patch("/:id", categoriaController.atualizarParcial);
+router.delete("/:id", categoriaController.deletar);
 
 module.exports = router;
