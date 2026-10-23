@@ -45,9 +45,9 @@ function criarLivro(dados) {
 }
 
 function atualizarLivroCompleto(indice, dados) {
-    if (!livros[indice]) return null;
+    const livro = buscarLivroPorId(indice);
+    if (!livro) return null;
 
-    const livro = buscarLivroPorId(id);
     livro.titulo = dados.titulo;
     livro.autor = dados.autor;
     livro.preco = dados.preco;     // Dispara o set preco
@@ -58,9 +58,8 @@ function atualizarLivroCompleto(indice, dados) {
 }
 
 function atualizarLivroParcial(indice, dados) {
-    if (!livros[indice]) return null;
-
-    const livro = buscarLivroPorId(id);
+    const livro = buscarLivroPorId(indice);
+    if (!livro) return null;
 
     if (dados.titulo !== undefined) livro.titulo = dados.titulo;
     if (dados.autor !== undefined) livro.autor = dados.autor;

@@ -1,0 +1,6 @@
+name: Livraria API - Grupo 6
+values:
+  - key: baseUrl
+    value: ''
+  - key: id_livro_atual
+    value: ''
