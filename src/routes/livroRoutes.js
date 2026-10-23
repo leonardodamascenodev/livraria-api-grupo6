@@ -1,5 +1,6 @@
 const express = require('express');
 const livroController = require('../controllers/livroController');
+const validarId = require("../middlewares/validarId");
 
 // Importando as validações do middleware que você criou
 const { 
@@ -9,6 +10,8 @@ const {
 } = require('../middlewares/validarLivros');
 
 const router = express.Router();
+
+router.get("/:id", validarId, livroController.buscarPorId)
 
 // Aplicando as validações certas em cada rota
 router.get("/", validarGetSemBody, livroController.listar);
