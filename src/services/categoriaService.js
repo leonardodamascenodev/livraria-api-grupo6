@@ -3,6 +3,18 @@ const Categoria = require("../models/Categoria");
 const categorias = [];
 let proximoId = 1;
 
+function validarCategoria(dados, completo) {
+    if (!dados) return "Envie os dados da categoria em JSON";
+    if (completo && !dados.nome) return "O nome e obrigatorio";
+    if (
+        dados.nome !== undefined &&
+        (typeof dados.nome !== "string" || dados.nome.length < 3)
+    ) {
+        return "O nome deve ter pelo menos 3 letras";
+    }
+    return null;
+}
+
 criarCategoria({
     nome: "Ficção",
     descricao: "Romances, fantasia e ficção científica",
@@ -58,4 +70,5 @@ module.exports = {
     atualizarCategoria,
     atualizarParcialCategoria,
     deletarCategoria,
+    validarCategoria,
 };

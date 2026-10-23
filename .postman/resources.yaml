@@ -1,9 +1,9 @@
-# Use this workspace to collaborate
 workspace:
   id: 46176ea4-0ee7-4372-8a1b-50fd986a11de
-
-# All resources in the `postman/` folder are automatically registered in Local View.
-# Point to additional files outside the `postman/` folder to register them individually. Example:
-#localResources:
-#  collections:
-#    - ../tests/E2E Test Collection/
+cloudResources:
+  collections:
+    ../postman/collections/Livraria API - Grupo 6: 59118924-aec34d41-494f-4231-b8b3-b8ed562742a9
+  environments:
+    ../postman/environments/Livraria API - Grupo 6.environment.yaml: 59118924-e892b7c2-4f0a-4949-9697-2f3403266cde
+  globals:
+    ../postman/globals/workspace.globals.yaml: 98213f56-1f77-4cee-8364-2de36be3bbdf
