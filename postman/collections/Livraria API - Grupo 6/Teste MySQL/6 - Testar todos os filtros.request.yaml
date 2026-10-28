@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/livros?precoMin=20&precoMax=50"
+method: GET
+queryParams:
+  precoMin: "20"
+  precoMax: "50"
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Retorna status 200\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });"
+    language: text/javascript
+order: 6000

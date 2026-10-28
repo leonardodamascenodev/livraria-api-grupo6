@@ -1,12 +1,15 @@
 function validarGetSemBody(req, res, next) {
-    if (req.body && Object.keys(req.body).length > 0) {
+    // Adicionado || {} para proteger contra req.body indefinido
+    const body = req.body || {};
+    if (Object.keys(body).length > 0) {
         return res.status(400).json({ error: "Requisições GET não devem conter corpo." });
     }
     next();
 }
 
 function validarCriacaoLivro(req, res, next) {
-    const { titulo, autor, preco, estoque } = req.body;
+    // Adicionado || {} para proteger contra req.body indefinido
+    const { titulo, autor, preco, estoque } = req.body || {};
 
     // Caso 1: Verifica campos obrigatórios
     if (!titulo || !autor || preco === undefined || estoque === undefined) {
@@ -27,7 +30,8 @@ function validarCriacaoLivro(req, res, next) {
 }
 
 function validarAtualizacaoParcial(req, res, next) {
-    const { preco, estoque } = req.body;
+    // 💡 SOLUÇÃO AQUI: Adicionado "|| {}" para evitar o TypeError se o body estiver vazio/indefinido
+    const { preco, estoque } = req.body || {};
 
     // Caso 4: Se atualizar estoque, não pode ser negativo
     if (estoque !== undefined && (typeof estoque !== 'number' || estoque < 0)) {

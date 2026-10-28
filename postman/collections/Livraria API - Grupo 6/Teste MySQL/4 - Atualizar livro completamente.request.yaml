@@ -1,0 +1,25 @@
+$kind: http-request
+url: "{{baseUrl}}/livros/{{livroId}}"
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \  \"titulo\": \"Dom Casmurro - Edição Especial\",\r
+
+    \  \"autor\": \"Machado de Assis\",\r
+
+    \  \"preco\": 49.90,\r
+
+    \  \"estoque\": 25\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Retorna status 200\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });"
+    language: text/javascript
+order: 4000

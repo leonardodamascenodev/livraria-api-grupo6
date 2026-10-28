@@ -1,0 +1,22 @@
+$kind: http-request
+url: "{{baseUrl}}/livros"
+method: GET
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Retorna status 200\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Retorna uma lista de livros\", function () {\r
+
+      \    const resposta = pm.response.json();\r
+
+      \    pm.expect(resposta).to.be.an(\"array\");\r
+
+      });"
+    language: text/javascript
+order: 1000

@@ -1,0 +1,20 @@
+$kind: http-request
+url: "{{baseUrl}}/livros/{{livroId}}"
+method: GET
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Livro excluído não existe mais\", function () {\r
+
+      \    pm.response.to.have.status(404);\r
+
+      });\r
+
+      \r
+
+      if (pm.response.code === 404) {\r
+
+      \    pm.collectionVariables.unset(\"livroId\");\r
+
+      }"
+    language: text/javascript
+order: 8000
