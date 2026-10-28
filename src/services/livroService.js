@@ -1,34 +1,48 @@
 const { Livro } = require("../models/Livro");
+const { db } = require("../config/db");
 
-const livros = [];
-let proximoId = 1;
+// const livros = [];
+// let proximoId = 1;
 
-criarLivro({ titulo: "Clean Code", autor: "Robert C. Martin", preco: 89.9, estoque: 12 });
-criarLivro({ titulo: "Eloquent JavaScript", autor: "Marijn Haverbeke", preco: 45.0, estoque: 20 });
+// criarLivro({ titulo: "Clean Code", autor: "Robert C. Martin", preco: 89.9, estoque: 12 });
+// criarLivro({ titulo: "Eloquent JavaScript", autor: "Marijn Haverbeke", preco: 45.0, estoque: 20 });
 
 function listarTodos() {
     return livros;
 }
 
-function listarLivros(filtros) {
-    let resultado = livros;
+async function listarLivros(filtros) {
+    const [linhas] = await db.query("SELECT * FROM livros");
+    let resultado = linhas;
 
+    // Filtrar por título
     if (filtros.titulo) {
         resultado = resultado.filter((livro) =>
             livro.titulo.toLowerCase().includes(filtros.titulo.toLowerCase())
         );
     }
-    if (filtros.titulo) {
+
+    // Filtrar por autor
+    if (filtros.autor) {
         resultado = resultado.filter((livro) =>
-            livro.titulo.toLowerCase().includes(filtros.titulo.toLowerCase())
+            livro.autor.toLowerCase().includes(filtros.autor.toLowerCase())
         );
     }
-    if (filtros.precoMax) {
-        resultado = resultado.filter((livro) => livro.preco <= Number(filtros.precoMax));
+
+    // Filtrar por preço máximo
+    if (filtros.precoMax !== undefined) {
+        resultado = resultado.filter((livro) =>
+            Number(livro.preco) <= Number(filtros.precoMax)
+        );
     }
+
+    // Filtrar por preço mínimo
     if (filtros.precoMin !== undefined) {
-        resultado = resultado.filter((livro) => livro.preco >= Number(filtros.precoMin));
+        resultado = resultado.filter((livro) =>
+            Number(livro.preco) >= Number(filtros.precoMin)
+        );
     }
+
     return resultado;
 }
 

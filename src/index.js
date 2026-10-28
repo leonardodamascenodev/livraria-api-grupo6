@@ -1,6 +1,10 @@
+require("dotenv").config();
+
+const { testarConexao } = require("./config/db")
 const express = require('express');
 const logger = require('./middlewares/logger');
 const routes = require('./routes/index');
+const { test } = require("media-typer");
 
 const app = express();
 
@@ -21,4 +25,5 @@ app.get("/sobre", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
+  testarConexao();
 });
