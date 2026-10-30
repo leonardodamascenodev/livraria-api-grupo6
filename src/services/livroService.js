@@ -58,15 +58,14 @@ async function buscarLivroPorId(id) {
 
 // CRIAR LIVRO
 async function criarLivro(dados) {
-    const { titulo, autor, preco, estoque } = dados;
 
     const [resultado] = await db.query(
         `INSERT INTO livros (titulo, autor, preco, estoque)
          VALUES (?, ?, ?, ?)`,
-        [titulo, autor, preco, estoque]
+        [dados.titulo, dados.autor, dados.preco, dados.estoque]
     );
 
-    return buscarLivroPorId(resultado.insertId);
+    return await buscarLivroPorId(resultado.insertId);
 }
 
 // ATUALIZAR LIVRO COMPLETAMENTE

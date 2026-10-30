@@ -1,0 +1,18 @@
+$kind: http-request
+name: 1 - Post /livros
+url: "{{baseUrl}}/livros/"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"titulo\": \"A Revolução dos Bichos\",\r
+
+    \    \"autor\": \"George Orwell\",\r
+
+    \    \"preco\": 34.90,\r
+
+    \    \"estoque\": 10\r
+
+    }"
+order: 1000
