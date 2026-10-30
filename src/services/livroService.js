@@ -137,7 +137,6 @@ module.exports = {
     listarTodos,
     listarLivros,
     buscarLivroPorId,
-    criarLivro,
     atualizarLivroCompleto,
     atualizarLivroParcial,
     deletarLivro
