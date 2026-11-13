@@ -1,5 +1,9 @@
 $kind: http-request
 name: 2 - Buscar por ID:3
-url: ""
+url: "{{baseUrl}}/livros/3"
 method: GET
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\npm.test(\"Veio O Hobbit\", function () {\r\n    pm.expect(pm.response.json().titulo).to.eql(\"O Hobbit\");\r\n});"
+    language: text/javascript
 order: 2000

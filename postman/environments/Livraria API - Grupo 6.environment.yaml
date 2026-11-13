@@ -12,3 +12,5 @@ values:
     value: ''
   - key: id_categoria_nova
     value: ''
+  - key: id_categoria_banco
+    value: ''

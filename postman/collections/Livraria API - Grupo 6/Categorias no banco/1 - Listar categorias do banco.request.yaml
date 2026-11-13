@@ -1,0 +1,8 @@
+$kind: http-request
+url: "{{baseUrl}}/categorias"
+method: GET
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\npm.test(\"Vieram as categorias do script\", function () {\r\n    pm.expect(pm.response.json().length).to.be.at.least(2);\r\n});"
+    language: text/javascript
+order: 1000

@@ -1,0 +1,8 @@
+$kind: http-request
+url: "{{baseUrl}}/categorias/{{id_categoria_banco}}"
+method: GET
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 404\", function () {\r\n    pm.response.to.have.status(404);\r\n});"
+    language: text/javascript
+order: 6000
