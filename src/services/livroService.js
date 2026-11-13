@@ -8,7 +8,9 @@ async function listarTodos() {
 
 // LISTAR LIVROS COM FILTROS
 async function listarLivros(filtros = {}) {
-    const [linhas] = await db.query("SELECT * FROM livros");
+    const [linhas] = await db.query(
+        "SELECT livros.*, categorias.nome AS categoria FROM livros LEFT JOIN categorias ON livros.categoria_id = categorias.id",
+    );
     let resultado = linhas;
 
     // Filtrar por título
@@ -49,8 +51,8 @@ async function listarLivros(filtros = {}) {
 // BUSCAR LIVRO POR ID
 async function buscarLivroPorId(id) {
     const [linhas] = await db.query(
-        "SELECT * FROM livros WHERE id = ?",
-        [id]
+        "SELECT livros.*, categorias.nome AS categoria FROM livros LEFT JOIN categorias ON livros.categoria_id = categorias.id WHERE livros.id = ?",
+        [id],
     );
 
     return linhas[0] || null;
@@ -60,9 +62,8 @@ async function buscarLivroPorId(id) {
 async function criarLivro(dados) {
 
     const [resultado] = await db.query(
-        `INSERT INTO livros (titulo, autor, preco, estoque)
-         VALUES (?, ?, ?, ?)`,
-        [dados.titulo, dados.autor, dados.preco, dados.estoque]
+        `INSERT INTO livros (titulo, autor, preco, estoque, categoria_id) VALUES (?, ?, ?, ?, ?)`,
+        [dados.titulo, dados.autor, dados.preco, dados.estoque, dados.categoria_id],
     );
 
     return await buscarLivroPorId(resultado.insertId);
@@ -74,13 +75,9 @@ async function atualizarLivroCompleto(id, dados) {
 
     if (!livro) return null;
 
-    const { titulo, autor, preco, estoque } = dados;
-
     await db.query(
-        `UPDATE livros
-         SET titulo = ?, autor = ?, preco = ?, estoque = ?
-         WHERE id = ?`,
-        [titulo, autor, preco, estoque, id]
+        `UPDATE livros SET titulo = ?, autor = ?, preco = ?, estoque = ?, categoria_id = ? WHERE id = ?`,
+        [dados.titulo, dados.autor, dados.preco, dados.estoque, dados.categoria_id, id],
     );
 
     return buscarLivroPorId(id);
@@ -96,7 +93,8 @@ async function atualizarLivroParcial(id, dados) {
         "titulo",
         "autor",
         "preco",
-        "estoque"
+        "estoque",
+        "categoria_id"
     ];
 
     const campos = camposPermitidos.filter(

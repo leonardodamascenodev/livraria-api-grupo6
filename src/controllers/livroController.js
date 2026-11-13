@@ -28,7 +28,7 @@ function validarDados(dados, parcial = false) {
         return "Informe título, autor, preço e estoque.";
     }
 
-    if (parcial && recebidos.length === 0) {
+    if (parcial && recebidos.length === 0 && dados.categoria_id === undefined) {
         return "Informe ao menos um campo para atualizar.";
     }
 
@@ -55,6 +55,10 @@ function validarDados(dados, parcial = false) {
         (!Number.isInteger(dados.estoque) ||
          dados.estoque < 0)) {
         return "O estoque deve ser um inteiro maior ou igual a zero.";
+    }
+
+    if (dados.categoria_id !== undefined && typeof dados.categoria_id !== "number") {
+        return "O categoria_id deve ser um numero";
     }
 
     return null;
@@ -102,29 +106,27 @@ async function buscarPorId(req, res) {
 }
 
 // CRIAR LIVRO
-async function criar(req, res) {
+async function criar(req, res, next) { // 1. Adicionado o 'next' aqui
     try {
         const erroValidacao = validarDados(req.body);
 
         if (erroValidacao) {
-            return res.status(400).json({
-                mensagem: erroValidacao
-            });
+            // 2. Se a validação local falhar (Ex: Título inválido ou preço negativo)
+            // Criamos um erro customizado para o tratarErros printar no seu terminal
+            const err = new Error(erroValidacao);
+            err.code = "ER_WARN_DATA_OUT_OF_RANGE"; // Código aceito no seu tratarErros
+            return next(err); 
         }
 
         const novoLivro = await livroService.criarLivro(req.body);
-
         return res.status(201).json(novoLivro);
     } catch (erro) {
-        console.error(erro);
-        return res.status(500).json({
-            mensagem: "Erro ao criar livro."
-        });
+        // 3. Se passar da validação mas estourar o limite de tamanho no MySQL, cai aqui
+        return next(erro); 
     }
 }
-
 // ATUALIZAR COMPLETAMENTE
-async function atualizarCompleto(req, res) {
+async function atualizarCompleto(req, res, next) {
     try {
         const id = obterId(req);
 
@@ -154,15 +156,13 @@ async function atualizarCompleto(req, res) {
 
         return res.status(200).json(livro);
     } catch (erro) {
-        console.error(erro);
-        return res.status(500).json({
-            mensagem: "Erro ao atualizar livro."
-        });
+        // Erros do banco (ex.: categoria inexistente) vao para o tratarErros
+        return next(erro);
     }
 }
 
 // ATUALIZAR PARCIALMENTE
-async function atualizarParcial(req, res) {
+async function atualizarParcial(req, res, next) {
     try {
         const id = obterId(req);
 
@@ -192,10 +192,8 @@ async function atualizarParcial(req, res) {
 
         return res.status(200).json(livro);
     } catch (erro) {
-        console.error(erro);
-        return res.status(500).json({
-            mensagem: "Erro ao atualizar livro."
-        });
+        // Erros do banco (ex.: categoria inexistente) vao para o tratarErros
+        return next(erro);
     }
 }
 

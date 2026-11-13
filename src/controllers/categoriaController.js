@@ -1,14 +1,14 @@
 const categoriaService = require('../services/categoriaService');
 
-function listar(req, res) {
+async function listar(req, res) {
     const filtros = req.query;
-    const livros = categoriaService.listarCategorias(filtros);
+    const livros = await categoriaService.listarCategorias(filtros);
     res.status(200).json(livros);
 }
 
-function buscarPorId(req, res) {
+async function buscarPorId(req, res) {
     const id = parseInt(req.params.id);
-    const livro = categoriaService.buscarCategoriaPorId(id);
+    const livro = await categoriaService.buscarCategoriaPorId(id);
 
     if (!livro) {
         return res.status(404).json({ mensagem: "Categoria não encontrada." });
@@ -17,25 +17,25 @@ function buscarPorId(req, res) {
     res.status(200).json(livro);
 }
 
-function criar(req, res) {
+async function criar(req, res) {
     const erro = categoriaService.validarCategoria(req.body, true);
     if (erro) {
         res.status(400).json({ erro: erro });
         return;
     }
 
-    const novoLivro = categoriaService.criarCategoria(req.body);
+    const novoLivro = await categoriaService.criarCategoria(req.body);
     res.status(201).json(novoLivro);
 }
 
-function atualizarCompleto(req, res) {
-    const erro = categoriaService.validarCategoria(req.body, true);
+async function atualizarCompleto(req, res) {
+    const erro = await categoriaService.validarCategoria(req.body, true);
     if (erro) {
         res.status(400).json({ erro: erro });
         return;
     }
     const indice = parseInt(req.params.id);
-    const livroAtualizado = categoriaService.atualizarCategoria(indice, req.body);
+    const livroAtualizado = await categoriaService.atualizarCategoria(indice, req.body);
 
     if (!livroAtualizado) {
         return res.status(404).json({ mensagem: "Categoria não encontrada." });
@@ -44,14 +44,14 @@ function atualizarCompleto(req, res) {
     res.status(200).json(livroAtualizado);
 }
 
-function atualizarParcial(req, res) {
-    const erro = categoriaService.validarCategoria(req.body, false);
+async function atualizarParcial(req, res) {
+    const erro = await categoriaService.validarCategoria(req.body, false);
     if (erro) {
         res.status(400).json({ erro: erro });
         return;
     }
     const indice = parseInt(req.params.id);
-    const livroAtualizado = categoriaService.atualizarParcialCategoria(indice, req.body);
+    const livroAtualizado = await categoriaService.atualizarParcialCategoria(indice, req.body);
 
     if (!livroAtualizado) {
         return res.status(404).json({ mensagem: "Categoria não encontrada." });
@@ -60,9 +60,9 @@ function atualizarParcial(req, res) {
     res.status(200).json(livroAtualizado);
 }
 
-function deletar(req, res) {
+async function deletar(req, res) {
     const indice = parseInt(req.params.id);
-    const deletado = categoriaService.deletarCategoria(indice);
+    const deletado = await categoriaService.deletarCategoria(indice);
 
     if (!deletado) {
         return res.status(404).json({ mensagem: "Categoria não encontrada." });
