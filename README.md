@@ -171,9 +171,13 @@ Duas tabelas, ligadas por **chave estrangeira**: cada livro aponta para a sua ca
 }
 ```
 
-### Rota inexistente
+### Outras rotas
 
-Qualquer outra URL responde **404** com `{ "erro": "Rota nao encontrada" }`.
+| Rota | Resposta |
+|---|---|
+| `GET /` | 200, mensagem de boas-vindas |
+| `GET /sobre` | 200, informações sobre a livraria |
+| Qualquer outra | 404 `{ "erro": "Rota nao encontrada" }` |
 
 ---
 

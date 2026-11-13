@@ -25,8 +25,9 @@ app.use((req, res, next) => {
 
 app.use(logger);
 app.use(express.json());
-app.use(routes);
 
+// As rotas "/" e "/sobre" vem ANTES do app.use(routes):
+// o routes termina com o 404 de "rota nao encontrada", que pega tudo o que chegar nele.
 app.get("/", (req, res) => {
   res.send("Bem-vindo à API da Livraria!");
 });
@@ -34,6 +35,8 @@ app.get("/", (req, res) => {
 app.get("/sobre", (req, res) => {
   res.send("Informações sobre a Livraria.");
 });
+
+app.use(routes);
 
 // 3. O SEU TRATAR ERROS TEM QUE FICAR AQUI, DEPOIS DE TODAS AS ROTAS!
 app.use(tratarErros); 
