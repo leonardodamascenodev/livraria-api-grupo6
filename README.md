@@ -9,10 +9,10 @@ Escola SENAI "Santo Paschoal Crepaldi" — Turma 1-2026-SESI_DEV_OC_1
 
 ## 👥 Integrantes
 
-* Nome Completo 1 — [@abreu010](https://github.com/abreu010)
-* Nome Completo 2 — [@anasigole-jpg](https://github.com/anasigole-jpg)
-* Nome Completo 3 — [@mariaesantos54-png](https://github.com/mariaesantos54-png)
-* Leonardo Damasceno — [@leonardodamascenodev](https://github.com/leonardodamascenodev)
+* João Lucas de Abreu — [@abreu010](https://github.com/abreu010)
+* Ana Vitória Napoli Sigole — [@anasigole-jpg](https://github.com/anasigole-jpg)
+* Maria Eduarda Pereira dos Santos — [@mariaesantos54-png](https://github.com/mariaesantos54-png)
+* Leonardo Correia Damasceno — [@leonardodamascenodev](https://github.com/leonardodamascenodev)
 
 ---
 
