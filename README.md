@@ -52,7 +52,7 @@ Copiem o `.env.example` para um arquivo chamado `.env` e coloquem a senha do MyS
 DB_HOST=localhost
 DB_PORT=3306
 DB_USER=root
-DB_PASSWORD=sua_senha_aqui
+DB_PASSWORD=
 DB_NAME=livraria
 ```
 
@@ -93,6 +93,14 @@ Duas tabelas, ligadas por **chave estrangeira**: cada livro aponta para a sua ca
 | 1 | Clean Code | Tecnologia |
 | 2 | Eloquent JavaScript | Tecnologia |
 | 3 | O Hobbit | Ficção |
+| 4 | Entendendo Algoritmos | Tecnologia |
+| 5 | Harry Potter e a Pedra Filosofal | Ficção |
+| 6 | O Pequeno Príncipe | Infantil |
+| 7 | O Menino Maluquinho | Infantil |
+| 8 | Sapiens | História |
+| 9 | O Diário de Anne Frank | História |
+
+Categorias: **1 Ficção**, **2 Tecnologia**, **3 Infantil**, **4 História**. Todo livro da carga tem categoria.
 
 **O banco protege a ligação:**
 * não deixa um livro apontar para uma categoria que não existe;
