@@ -18,9 +18,7 @@ async function testarConexao() {
         await db.query("SELECT 1");
         console.log("Conectado ao MySQL!");
     } catch (erro) {
-        console.log("ERRO ao conectar no MySQL:", erro.message);
-        // 🌟 A CORREÇÃO ESTÁ AQUI: repassa o erro para o index.js capturar e ativar o 503
-        throw erro; 
+        console.log("ERRO ao conectar no MySQL:", erro.code, erro.message);
     }
 }
 

@@ -65,20 +65,18 @@ function validarDados(dados, parcial = false) {
 }
 
 // LISTAR LIVROS
-async function listar(req, res) {
+async function listar(req, res, next) {
     try {
         const livros = await livroService.listarLivros(req.query);
         return res.status(200).json(livros);
     } catch (erro) {
-        console.error(erro);
-        return res.status(500).json({
-            mensagem: "Erro ao listar livros."
-        });
+        // Erros do banco vao para o tratarErros
+        return next(erro);
     }
 }
 
 // BUSCAR POR ID
-async function buscarPorId(req, res) {
+async function buscarPorId(req, res, next) {
     try {
         const id = obterId(req);
 
@@ -98,10 +96,8 @@ async function buscarPorId(req, res) {
 
         return res.status(200).json(livro);
     } catch (erro) {
-        console.error(erro);
-        return res.status(500).json({
-            mensagem: "Erro ao buscar livro."
-        });
+        // Erros do banco vao para o tratarErros
+        return next(erro);
     }
 }
 
@@ -198,7 +194,7 @@ async function atualizarParcial(req, res, next) {
 }
 
 // DELETAR LIVRO
-async function deletar(req, res) {
+async function deletar(req, res, next) {
     try {
         const id = obterId(req);
 
@@ -218,10 +214,8 @@ async function deletar(req, res) {
 
         return res.status(204).send();
     } catch (erro) {
-        console.error(erro);
-        return res.status(500).json({
-            mensagem: "Erro ao deletar livro."
-        });
+        // Erros do banco vao para o tratarErros
+        return next(erro);
     }
 }
 

@@ -9,7 +9,7 @@ body:
 
     \    \"autor\": \"J.R.R. Tolkien\",\r
 
-    \    \"preco\": \"42\",\r
+    \    \"preco\": 42,\r
 
     \    \"estoque\": 70\r
 

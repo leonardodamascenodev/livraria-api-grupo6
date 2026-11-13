@@ -1,5 +1,10 @@
 function tratarErros(err, req, res, next) {
     console.log("ERRO:", err.code, err.message);
+    // JSON mal escrito (ex.: virgula sobrando): o express.json() nao consegue ler o corpo
+    if (err.type === "entity.parse.failed") {
+        res.status(400).json({ erro: "JSON mal escrito" });
+        return;
+    }
     if (err.code === "ECONNREFUSED") {
         res.status(503).json({ erro: "Banco de dados indisponivel" });
         return;
