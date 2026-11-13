@@ -259,6 +259,14 @@ A coleção fica em `postman/collections/Livraria API - Grupo 6/`, com o environ
 | **Teste Relacionamento** | Fluxo completo do relacionamento livro × categoria, com limpeza no fim (pode rodar várias vezes) |
 | **Filtro por categoria** | `GET /livros?categoria=` com `fic`, `TEC` e `fic` + `autor=tolkien` |
 
+### 📸 Comprovação — Entrega do Bloco 4
+
+Runner do Postman com a coleção inteira (71 requisições), o banco recém-criado pelo `livraria.sql` e a API ligada: **89 testes, 89 passaram, 0 falharam, 0 erros**.
+
+![Runner do Postman: 89 de 89 testes passando](postman/entrega-bloco4.png)
+
+O print fica em [`postman/entrega-bloco4.png`](postman/entrega-bloco4.png).
+
 ---
 
 ## 📁 Estrutura de pastas
