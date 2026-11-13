@@ -121,6 +121,7 @@ Duas tabelas, ligadas por **chave estrangeira**: cada livro aponta para a sua ca
 | `autor` | `/livros?autor=tolkien` | Autores que contêm o texto |
 | `precoMin` | `/livros?precoMin=40` | Preço maior ou igual |
 | `precoMax` | `/livros?precoMax=50` | Preço menor ou igual |
+| `categoria` | `/livros?categoria=fic` | Livros cuja categoria contém o texto (os sem categoria ficam de fora) |
 
 **Exemplo de corpo (`POST` / `PUT`):**
 
@@ -248,6 +249,7 @@ A coleção fica em `postman/collections/Livraria API - Grupo 6/`, com o environ
 | **Erros do banco** | Título e preço grandes demais para o banco |
 | **Relacionamento** | Livro com o nome da categoria, categoria inexistente (400) e apagar categoria com livros (409) |
 | **Teste Relacionamento** | Fluxo completo do relacionamento livro × categoria, com limpeza no fim (pode rodar várias vezes) |
+| **Filtro por categoria** | `GET /livros?categoria=` com `fic`, `TEC` e `fic` + `autor=tolkien` |
 
 ---
 

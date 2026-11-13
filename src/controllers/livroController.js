@@ -107,11 +107,10 @@ async function criar(req, res, next) { // 1. Adicionado o 'next' aqui
         const erroValidacao = validarDados(req.body);
 
         if (erroValidacao) {
-            // 2. Se a validação local falhar (Ex: Título inválido ou preço negativo)
-            // Criamos um erro customizado para o tratarErros printar no seu terminal
-            const err = new Error(erroValidacao);
-            err.code = "ER_WARN_DATA_OUT_OF_RANGE"; // Código aceito no seu tratarErros
-            return next(err); 
+            // Dado invalido: responde 400 com a mensagem real (igual ao PUT e ao PATCH)
+            return res.status(400).json({
+                mensagem: erroValidacao
+            });
         }
 
         const novoLivro = await livroService.criarLivro(req.body);

@@ -1,0 +1,8 @@
+$kind: http-request
+url: "{{baseUrl}}/livros?categoria=TEC"
+method: GET
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\nconst livros = pm.response.json();\r\nconst titulos = livros.map((l) => l.titulo);\r\npm.test(\"So livros de Tecnologia\", function () {\r\n    livros.forEach((l) => pm.expect(l.categoria).to.eql(\"Tecnologia\"));\r\n});\r\npm.test(\"Vieram Clean Code e Eloquent JavaScript\", function () {\r\n    pm.expect(titulos).to.include(\"Clean Code\");\r\n    pm.expect(titulos).to.include(\"Eloquent JavaScript\");\r\n});"
+    language: text/javascript
+order: 2000

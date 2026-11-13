@@ -31,6 +31,15 @@ async function listarLivros(filtros = {}) {
         );
     }
 
+    // Filtrar pelo nome da categoria (livro sem categoria fica de fora)
+    if (filtros.categoria) {
+        resultado = resultado.filter(
+            (livro) =>
+                livro.categoria !== null &&
+                livro.categoria.toLowerCase().includes(filtros.categoria.toLowerCase()),
+        );
+    }
+
     // Filtrar por preço máximo
     if (filtros.precoMax !== undefined) {
         resultado = resultado.filter((livro) =>
