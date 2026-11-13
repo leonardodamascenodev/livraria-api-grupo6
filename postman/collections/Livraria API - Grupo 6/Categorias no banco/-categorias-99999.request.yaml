@@ -1,0 +1,5 @@
+$kind: http-request
+name: /categorias/99999
+url: "{{baseUrl}}/categorias/99999"
+method: GET
+order: 1000

@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/livros/3"
+method: PATCH
+body:
+  type: json
+  content: '{ "categoria_id": 99999 }'
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+    language: text/javascript
+  - type: beforeRequest
+    code: ""
+    language: text/javascript
+order: 7000

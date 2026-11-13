@@ -6,3 +6,9 @@ values:
     value: ''
   - key: id_categoria_atual
     value: ''
+  - key: id_livro_com_categoria
+    value: ''
+  - key: id_livro_sem_categoria
+    value: ''
+  - key: id_categoria_nova
+    value: ''

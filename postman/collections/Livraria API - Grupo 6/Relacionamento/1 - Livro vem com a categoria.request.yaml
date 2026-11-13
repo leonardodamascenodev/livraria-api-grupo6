@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/livros/1"
+method: GET
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\npm.test(\"Veio o nome da categoria\", function () {\r\n    pm.expect(pm.response.json().categoria).to.eql(\"Tecnologia\");\r\n});"
+    language: text/javascript
+  - type: beforeRequest
+    code: ""
+    language: text/javascript
+order: 1000

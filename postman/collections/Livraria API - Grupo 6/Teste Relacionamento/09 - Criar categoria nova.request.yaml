@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/categorias"
+method: POST
+body:
+  type: json
+  content: '{ "nome": "Infantil", "descricao": "Livros para criancas" }'
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 201\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\npm.environment.set(\"id_categoria_nova\", pm.response.json().id);"
+    language: text/javascript
+  - type: beforeRequest
+    code: ""
+    language: text/javascript
+order: 9000

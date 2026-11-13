@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/categorias/1"
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 409\", function () {\r\n    pm.response.to.have.status(409);\r\n});"
+    language: text/javascript
+  - type: beforeRequest
+    code: ""
+    language: text/javascript
+order: 3000

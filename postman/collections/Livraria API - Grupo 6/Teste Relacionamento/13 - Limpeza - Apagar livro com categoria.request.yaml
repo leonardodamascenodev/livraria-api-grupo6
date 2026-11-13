@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/livros/{{id_livro_com_categoria}}"
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 204\", function () {\r\n    pm.response.to.have.status(204);\r\n});"
+    language: text/javascript
+  - type: beforeRequest
+    code: ""
+    language: text/javascript
+order: 13000
