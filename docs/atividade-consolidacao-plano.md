@@ -118,28 +118,41 @@ As correções 1 a 6 estão no `docs/plano-de-projeto.md`. As correções 1 a 4 
 
 ## Parte 3 — Revisão cruzada
 
-**Nosso grupo revisou o documento do grupo:** __ *(pendente: combinar com o professor qual grupo revisamos, até 13/11)*
+**Nosso grupo revisou o documento do grupo:** **7** — [sophibasaglia/livraria-api-grupo7](https://github.com/sophibasaglia/livraria-api-grupo7)
+
+> **O que foi revisado (18/11):** o Grupo 7 **ainda não tem o `docs/plano-de-projeto.md`**. O único branch é o `main`, e o último commit é de 13/11. Também não há escopo, requisitos, matriz de riscos, cronograma, orçamento ou RACI no repositório, e nenhum GitHub Project está ligado a ele. A revisão foi feita sobre o que existe: o **README** e as **8 issues** do repositório.
 
 | Critério | Sim | Parcial | Não |
 |---|:---:|:---:|:---:|
-| Dá para entender o projeto sem ter acompanhado as aulas | ☐ | ☐ | ☐ |
-| As siglas são explicadas e as tabelas têm frase de contexto | ☐ | ☐ | ☐ |
-| Todo requisito funcional tem tarefa e estimativa | ☐ | ☐ | ☐ |
-| Os riscos médios/altos têm resposta com dono e gatilho | ☐ | ☐ | ☐ |
-| A contingência do orçamento é justificada pelos riscos | ☐ | ☐ | ☐ |
-| As contas do orçamento conferem | ☐ | ☐ | ☐ |
-| A matriz RACI tem um A e pelo menos um R por atividade | ☐ | ☐ | ☐ |
-| As escolhas (metodologia, estimativa, contingência) estão justificadas | ☐ | ☐ | ☐ |
+| Dá para entender o projeto sem ter acompanhado as aulas | ☐ | ☒ | ☐ |
+| As siglas são explicadas e as tabelas têm frase de contexto | ☐ | ☒ | ☐ |
+| Todo requisito funcional tem tarefa e estimativa | ☐ | ☐ | ☒ |
+| Os riscos médios/altos têm resposta com dono e gatilho | ☐ | ☐ | ☒ |
+| A contingência do orçamento é justificada pelos riscos | ☐ | ☐ | ☒ |
+| As contas do orçamento conferem | ☐ | ☐ | ☒ |
+| A matriz RACI tem um A e pelo menos um R por atividade | ☐ | ☐ | ☒ |
+| As escolhas (metodologia, estimativa, contingência) estão justificadas | ☐ | ☐ | ☒ |
+
+O que justifica cada marcação:
+- **Entender o projeto (parcial):** o README explica bem o objetivo, as tecnologias, os erros do banco e como rodar. Mas mistura "Atividade 03/04" com "Blocos 1 a 4" sem dizer qual é qual, e o comando de clone ainda tem o placeholder `seu-usuario`.
+- **Siglas e contexto (parcial):** as tecnologias e os códigos de erro têm explicação, mas não existem as tabelas de planejamento que a atividade pede.
+- **Requisitos com tarefa e estimativa (não):** não há lista de requisitos. As issues #4 a #8 descrevem tarefas, mas nenhuma tem estimativa, e todas continuam abertas, embora o Bloco 4 já tenha sido entregue.
+- **Os outros cinco critérios (não):** riscos, orçamento, RACI e as justificativas das escolhas não aparecem em nenhum arquivo do repositório.
 
 **Até 3 pontos de melhoria para o outro grupo:**
 
-1.
-2.
-3.
+1. **Criar o `docs/plano-de-projeto.md` com as 9 seções do modelo.** Dá para aproveitar o que o README já tem: o "Sobre o Projeto" vira a Visão geral e a "Divisão de Responsabilidades" vira o começo do cronograma. O que falta escrever: escopo, requisitos, riscos, estimativa, orçamento e RACI.
+2. **Organizar o backlog no GitHub.**
+   - Fechar ou apagar as issues que não são tarefa: #1 e #2 ("teste") e #3, cujo título não descreve trabalho.
+   - Fechar as issues #4 a #8, que já foram entregues no Bloco 4.
+   - Dar estimativa e milestone a cada issue e ligar o repositório a um GitHub Project.
+
+   Sem isso, a rastreabilidade requisito → issue → estimativa não fecha.
+3. **Transformar a "Divisão de Responsabilidades" em uma matriz RACI com nomes.** Hoje ela diz o que foi feito em cada bloco, mas não quem fez. Os assignees das issues (Sophia, Ana Beatriz, Yohane e Victor) já dão a base dos R. Aproveitar também para citar só a ferramenta de testes que o grupo usa de fato: hoje o README cita Insomnia e Postman ao mesmo tempo.
 
 **Uma pergunta que a banca provavelmente faria a esse grupo:**
 
-> Esta parte depende de ler o documento de outro grupo e fica para o grupo preencher em aula.
+> "Nenhuma das issues de vocês tem estimativa e o projeto não tem orçamento. Como vocês sabem quantas horas o projeto levou, quanto ele custaria e se o prazo de 13/11 era realista?"
 
 ---
 
@@ -151,4 +164,4 @@ As correções 1 a 6 estão no `docs/plano-de-projeto.md`. As correções 1 a 4 
 - [x] As escolhas do grupo estão justificadas, não só registradas
 - [x] O documento cita apenas as tecnologias que a Back-End realmente usa
 - [x] `docs/plano-de-projeto.md` foi commitado no repositório do grupo
-- [ ] A revisão cruzada foi feita (ou agendada até 13/11) e os apontamentos foram entregues ao outro grupo
+- [ ] A revisão cruzada foi feita (ou agendada até 13/11) e os apontamentos foram entregues ao outro grupo *(revisão feita em 18/11; falta entregar os apontamentos ao Grupo 7)*
