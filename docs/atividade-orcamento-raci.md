@@ -8,7 +8,7 @@
 
 **Custos-hora de referência (iguais para todos os grupos):** Desenvolvedor(a) R$ 40,00 · Gerente de projeto/PO R$ 60,00
 
-> ⚠️ **Conferir antes de entregar:** a estimativa de 23/10 não está no repositório; as horas foram montadas a partir do que o projeto entregou (commits, README e Postman). A matriz de riscos e os papéis no Scrum vêm da atividade de 16/10 (`docs/atividade-matriz-riscos-sprint-planning.md`), e os responsáveis vêm das issues do GitHub.
+> As horas vêm da atividade de estimativas de 23/10 (`docs/atividade-estimativas.md`). A matriz de riscos e os papéis no Scrum vêm da atividade de 16/10 (`docs/atividade-matriz-riscos-sprint-planning.md`), e os responsáveis vêm das issues do GitHub. Os valores foram corrigidos na consolidação do plano (`docs/atividade-consolidacao-plano.md`).
 
 ---
 
@@ -20,16 +20,14 @@
 
 **Total de horas de desenvolvimento:** **120** horas
 
-Distribuição das horas pelas entregas do projeto:
+De onde vêm as 120 horas (corrigido na consolidação do plano para cada hora apontar para uma issue ou entrega):
 
-| Entrega | O que inclui | Horas |
-|---|---|:---:|
-| Bloco 1 — Modelagem | Diagrama UML, classes `Livro`, `Categoria`, `Pessoa`, `Cliente`, `Funcionario`, `Carrinho` | 16 |
-| Bloco 2 — Arquitetura | Esqueleto MVC (routes, controllers, services) e auditoria UML × código | 20 |
-| Bloco 3 — API em memória | CRUD de livros e categorias, filtros, validações e middlewares | 32 |
-| Bloco 4 — MySQL | Script do banco, integração com `mysql2`, relacionamento livro × categoria, tratamento de erros do banco | 36 |
-| Testes | Coleção do Postman (71 requisições, 89 testes) | 16 |
-| **Total** | | **120** |
+| Parte | O que inclui | Origem do número | Horas |
+|---|---|---|:---:|
+| Blocos 1 e 2 (antes do backlog) | Diagrama UML e classes (16 h), esqueleto MVC e auditoria UML × código (20 h) | Horas das entregas, feitas antes de existirem issues | 36 |
+| Issues #1 a #14 | CRUD de livros, filtros, categorias, padronização HTTP, testes e README | Planning Poker de 23/10 (`docs/atividade-estimativas.md`) | 62 |
+| Issue #15 | Migração de livros e categorias para o MySQL | Planning Poker (21, quebrada em 3 + 8 + 8 + 3) | 22 |
+| **Total** | | | **120** |
 
 **Por que o grupo escolheu essa estimativa?**
 O Planning Poker encaixa no jeito que o grupo trabalha: as tarefas eram pequenas (uma rota, um middleware, uma pasta de testes) e todos os integrantes votam juntos, o que ajuda quem tem menos experiência a entender o tamanho de cada tarefa. Pontos de Função exigiriam contar entradas, saídas e arquivos lógicos de um sistema já bem definido, e o escopo da livraria foi mudando a cada bloco (primeiro em memória, depois no MySQL). Com o Planning Poker o grupo reestimou a cada bloco sem refazer a contagem inteira.
@@ -52,12 +50,12 @@ Usamos 15% (meio da faixa) porque o grupo tem reunião de acompanhamento a cada 
 
 | Item | Valor mensal ou único | Meses de uso | Custo |
 |---|---|---|---|
-| Servidor para hospedar a API Node.js (VPS básica) | R$ 35,00 / mês | 4 | 4 × R$ 35,00 = R$ 140,00 |
-| Banco MySQL gerenciado em nuvem | R$ 45,00 / mês | 4 | 4 × R$ 45,00 = R$ 180,00 |
 | Computadores de desenvolvimento (laboratório SENAI) | R$ 0,00 (equipamento já existente) | 4 | 4 × R$ 0,00 = R$ 0,00 |
-| **Total de infraestrutura** | | | **R$ 320,00** |
+| Internet do laboratório | R$ 0,00 (já contratada pela escola) | 4 | 4 × R$ 0,00 = R$ 0,00 |
+| MySQL rodando em cada máquina (`localhost`) | R$ 0,00 | 4 | 4 × R$ 0,00 = R$ 0,00 |
+| **Total de infraestrutura** | | | **R$ 0,00** |
 
-Os 4 meses correspondem ao período do projeto (ago a nov). Durante as aulas a API rodou em `localhost`, mas o orçamento prevê onde ela ficaria hospedada para uso real.
+Os 4 meses correspondem ao período do projeto (ago a nov). A versão anterior previa um servidor (R$ 140,00) e um banco em nuvem (R$ 180,00). Foram retirados na consolidação, porque a hospedagem em produção está no **escopo excluído**: a API só roda em `localhost`.
 
 ### 1.4. Software e serviços
 
@@ -93,11 +91,13 @@ Três desses riscos já aconteceram durante o projeto. O risco 1: o servidor ca�
 | Bloco | Valor |
 |---|---|
 | 1. Pessoal | R$ 5.880,00 |
-| 2. Infraestrutura | R$ 320,00 |
+| 2. Infraestrutura | R$ 0,00 |
 | 3. Software e serviços | R$ 0,00 |
-| **Subtotal (1 + 2 + 3)** | **R$ 6.200,00** |
-| 4. Reserva de contingência (subtotal × **15** %) | R$ 6.200,00 × 15% = R$ 930,00 |
-| **TOTAL DO PROJETO** | **R$ 7.130,00** |
+| **Subtotal (1 + 2 + 3)** | **R$ 5.880,00** |
+| 4. Reserva de contingência (subtotal × **15** %) | R$ 5.880,00 × 15% = R$ 882,00 |
+| **TOTAL DO PROJETO** | **R$ 6.762,00** |
+
+> Total corrigido na consolidação do plano: era R$ 7.130,00 antes de sair a hospedagem (R$ 320,00 + 15% = R$ 368,00 a menos).
 
 ---
 
@@ -125,6 +125,7 @@ Três desses riscos já aconteceram durante o projeto. O risco 1: o servidor ca�
 |---|:---:|:---:|:---:|:---:|:---:|:---:|
 | Levantamento e revisão de requisitos | — | A/R | C | I | C | |
 | Modelagem do banco de dados | — | C | I | I | A/R | |
+| Migração para o MySQL | #15 | I | R | R | A/R | |
 | Rotas de livros (CRUD e busca) | #1 a #9 | R | R | R | A/R | |
 | Rotas de categorias | #11, #12 | I | I | A/R | R | |
 | Testes da API | #13 | I | C | A | R | |
@@ -141,7 +142,7 @@ Três desses riscos já aconteceram durante o projeto. O risco 1: o servidor ca�
 - [x] Toda linha tem **pelo menos um R**
 - [x] Nenhum integrante tem R em quase todas as linhas
 
-Contagem de R por integrante (11 atividades): Maria Eduarda 5 · João Lucas 5 · Ana Vitória 5 · Leonardo 6.
+Contagem de R por integrante (12 atividades): Maria Eduarda 5 · João Lucas 6 · Ana Vitória 6 · Leonardo 7.
 
 **Algum integrante ficou sobrecarregado? O que o grupo decidiu fazer?**
 Sim, o Leonardo. No GitHub ele tem 5 das 14 issues (#1, #4, #8, #12, #13), enquanto cada colega tem 3. No histórico do repositório a diferença é maior: cerca de 43 dos 56 commits são dele. O grupo decidiu que cada integrante faz o commit da própria issue e que outra pessoa revisa antes do merge (Definição de Pronto). Também decidiu que, a partir do próximo bloco, uma das issues do Leonardo passa para quem tiver menos horas na sprint, seguindo o rodízio de responsabilidades previsto no README.
@@ -153,7 +154,7 @@ Conferido nas issues do GitHub em 18/11. Antes, a matriz não batia nas linhas d
 - **README e documentação:** o A/R passou para a Maria Eduarda (assignee da #14).
 - **Rotas de livros:** todos ficaram com R, porque as issues #1 a #9 estão divididas entre os 4.
 
-No GitHub, as 14 issues foram fechadas, receberam labels e foram colocadas nos milestones M1, M2 e M3. Todas estão no Project [Livraria API - Grupo 6](https://github.com/users/leonardodamascenodev/projects/1).
+No GitHub, as 14 issues foram fechadas, receberam labels e foram colocadas nos milestones M1, M2 e M3. Todas estão no Project [Livraria API - Grupo 6](https://github.com/users/leonardodamascenodev/projects/1). Na consolidação foi criada a #15 (migração para o MySQL), com Leonardo, João e Ana como assignees, os mesmos R da nova linha da matriz.
 
 ---
 

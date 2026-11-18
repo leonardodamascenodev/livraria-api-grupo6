@@ -97,7 +97,7 @@ Escolhemos 0,7 por causa do risco 4: o grupo também tem provas e trabalhos de o
 | 1 | #1 | Revisar e padronizar modelo Livro | 2 h | Base de tudo: as issues #2 e #5 dependem dela |
 | 2 | #2 | Revisar serviço de listagem de livros | 2 h | Depende de #1 e libera #3 e #4 |
 | 3 | #3 | Implementar e testar GET /livros | 3 h | Rota mais usada pelo dono da livraria (consultar o acervo) |
-| 4 | #4 | Implementar consulta de livro por índice | 3 h | Libera o DELETE (#8) e o 404 de livro inexistente |
+| 4 | #4 | Implementar consulta de livro por id | 3 h | Libera o DELETE (#8) e o 404 de livro inexistente |
 | 5 | #5 | Implementar e validar cadastro de livros | 4 h | Sem cadastro a livraria não alimenta o acervo; libera o PUT (#6) |
 | 6 | #6 | Implementar atualização completa de livro | 4 h | Depende de #5 e libera o PATCH (#7) |
 | 7 | #7 | Implementar atualização parcial de livro | 3 h | Fecha a edição de livros (mudar só preço ou estoque) |
@@ -124,7 +124,7 @@ Issues puxadas na ordem do backlog priorizado até a capacidade de 29 h. A próx
 | #1 | Revisar e padronizar modelo Livro | 2 h | Leonardo | — |
 | #2 | Revisar serviço de listagem de livros | 2 h | João Lucas | #1 |
 | #3 | Implementar e testar GET /livros | 3 h | Ana Vitória | #2 |
-| #4 | Implementar consulta de livro por índice | 3 h | Leonardo | #2 |
+| #4 | Implementar consulta de livro por id | 3 h | Leonardo | #2 |
 | #5 | Implementar e validar cadastro de livros | 4 h | Maria Eduarda | #1 |
 | #6 | Implementar atualização completa de livro | 4 h | João Lucas | #5 |
 | #7 | Implementar atualização parcial de livro | 3 h | Ana Vitória | #6 |
